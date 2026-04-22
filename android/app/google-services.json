@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "93734126620",
+    "project_id": "app-clima-anais",
+    "storage_bucket": "app-clima-anais.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93734126620:android:5ad22471effab6da57cbd9",
+        "android_client_info": {
+          "package_name": "com.example.app_clima"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw4f-O5xPGQuWS1kfwYiSpmZkYAd_PgEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

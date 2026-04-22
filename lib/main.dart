@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -50,6 +57,15 @@ class _ClimaPageState extends State<ClimaPage> {
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
+         // ESTE BLOQUE ES LO ÚNICO NUEVO QUE AGREGAS ⬇️
+  await FirebaseFirestore.instance.collection('consultas_clima').add({
+    'ciudad': city,
+    'pais': country,
+    'temperatura': '${data['main']['temp']}°C',
+    'descripcion': data['weather'][0]['description'],
+    'humedad': data['main']['humidity'],
+    'fecha': FieldValue.serverTimestamp(),
+  });
         _mostrarClima(data);
       } else {
         setState(() {
